@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block title %} 
+Изменить статью
+{% endblock title %}
+
+{% block content %}
+<form action="/update_article_redirect{{article.id}}" enctype="multipart/form-data" method="post">
+    
+    <p>
+        Название:
+        <input name="title" value="{{ article.title }}" required />
+    </p>
+    <p>
+        Содержание:
+        <textarea name="content"  rows="5" cols="40" required>{{ article.content }}</textarea>
+    </p>
+    <p>
+        Ссылка на источник (при наличии):
+        <input name="source_link" type="url" value="{{ article.source_link }}"></input>
+    </p>
+    {% if article.image_id %}
+    <p>
+    Текущее фото:
+    <img class="article_picture" src='{{ url_for("static", path="images/articles/" + article.image_id|string + ".webp") }}'>
+    {% endif %}
+    </p>
+    <p>
+        Изменить фото:
+        <input name="file" type="file"/>
+    </p>
+    
+    <input type="submit" value="Опубликовать изменения"/>
+</form>
+{% endblock %}

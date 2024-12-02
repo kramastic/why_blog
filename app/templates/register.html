@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Зарегистрироваться
+{% endblock title %}
+
+{% block right_menu %}
+<li><a href="/sign_in">Войти</a></li>
+{% endblock right_menu %}
+
+{% block content %}
+<form action="/register_redirect" enctype="multipart/form-data" method="post">
+    <p>
+        E-mail:
+        <input name="email" type="email" required/>
+    </p>
+    <p>
+        Пароль:
+        <input name="password" type="password" minlength="6" required/>
+    </p>
+    <p>
+        Повторите пароль:
+        <input name="repeated_password" type="password" minlength="6" required/>
+    </p>
+    <p>
+        Имя:
+        <input name="name" required/>
+    </p>
+    <p>
+        Фамилия:
+        <input name="second_name" required/>
+    </p>
+    <p>
+        Дата рождения:
+        <input name="birthday_date" type="date" required/>
+    </p>
+    <p>
+        Ник:
+        <input name="nickname" />
+    </p>
+    <p>
+        Местоположение:
+        <input name="location" />
+    </p>
+    <p>
+        О себе:
+        <textarea name="introduction" type="text"></textarea>
+    </p>
+    <p>
+        Фото профиля:
+        <input name="file" type="file"/>
+    </p>
+    <input type="submit" value="Зарегистрироваться" />
+</form>
+{% endblock %}

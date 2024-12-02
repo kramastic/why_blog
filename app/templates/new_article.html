@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Новая публикация
+{% endblock title %}
+
+
+{% block content %}
+<form class="my_form" action="/new_article_redirect" enctype="multipart/form-data" method="post">
+    <p>
+        Название*:
+        <input class="input_from_article" name="title" required/>
+    </p>
+    <p>
+        Содержание*:
+        <textarea name="content" type="text" required> </textarea>
+    </p>
+    <p>
+        Ссылка на источник (при наличии):
+        <input class="input_from_article" name="source_link" type="url"></input>
+    </p>
+    <p>
+        Фото:
+        <input name="file" type="file"/>
+    </p>
+    <input type="submit" value="Опубликовать" />
+</form>
+{% endblock %}

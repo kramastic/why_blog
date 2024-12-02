@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block title %} 
+{{ user.name }} {{ user.second_name }}
+{% endblock title %}
+
+{% block content %}
+<div class="blocks">
+    <div>
+      <p><img class="picture" src='{{ url_for("static", path="images/avatars/" + user.avatar_id|string + ".webp") }}'></p>
+    </div>
+    <div class="bio">
+      <h2>{{ user.name }} {{ user.second_name }}</h2>
+      <h3>{{ user.birthday_date.strftime('%d.%m.%Y')}}</h3>
+      <h3>{{ user.location }}</h3>
+      <h4>{{ user.introduction }}</h4>
+      {% if user.id==1 %}
+      <a href="https://github.com/kramastic">GitHub</a>
+      {% endif %}
+    </div>
+    {% for article in articles %}
+    <ul class="block-items">
+      <li>
+        <h3>{{ article.title }}</h3>
+        <p class="content_lines">
+          {{ article.content }}</p>
+          {% if article.source_link %}
+          <p><a href={{article.source_link}}>Источник</a></p>
+          {% endif %}
+          {% if article.image_id %}
+          <img class="article_picture" src='{{ url_for("static", path="images/articles/" + article.image_id|string + ".webp") }}'>
+          {% endif %}
+          {% if article.user_id == current_user.id %}
+          <p><a href="/update_article{{article.id}}">Изменить публикацию</a></p>
+          <form action="/delete_article{{article.id}}" method="post">
+            <button class="button_delete_article" type="submit">Удалить публикацию</button>
+          </form>
+          {% endif %}
+        
+      </li>
+    </ul>
+    {% endfor %}
+  </div>
+{% endblock content %}

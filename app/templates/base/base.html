@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/a6eb112351.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href='{{ url_for("static", path="css/style.css") }}' />
+    <link rel="shortcut icon" href='{{ url_for("static", path="images/pages/app-indicator.svg") }}'/>
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="nav-bar">
+        <div class="left-menu">
+        </div>
+        <ul class="right-menu">
+        {% block right_menu %}
+          {% if not current_user %}
+          <li><a href="/sign_in">Войти</a></li>
+          <li><a href="/register">Зарегистрироваться</a></li>
+          {% else %}
+          <li>
+            <form action="/logout_redirect" method="post">
+              <button type="submit">Выйти</button>
+            </form>
+          </li>
+          {% endif %}
+        {% endblock right_menu %}
+        </ul>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="container">
+        <ul class="side-bar">
+          <li class="list-item"><a href="/me">Моя страница</a></li>
+          <li class="list-item"><a href="/all_users">Другие пользователи</a></li>
+          {% if current_user %}
+          <li class="list-item"><a href="/new_article">Новая публикация</a></li>
+          {% endif %}
+          <hr style="border-color: rgb(154, 157, 199);">
+          <li class="list-item"><a href="/about_project">О данном проекте</a></li>
+          <li class="list-item"><a href="/id1">О разработчике</a></li>
+        </ul>
+        {% block content %}
+
+        {% endblock content %}
+      </div>
+    </div>
+  </body>
+</html>

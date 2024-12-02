@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Пользователи
+{% endblock title %}
+
+{% block content%}
+<div class="blocks">
+{% for user in users %}
+{% if user.id != current_user.id %}
+<ul class="block-items-user-page">
+<li>
+<h3><a href="/id{{ user.id }}">{{ user.name }} {{ user.second_name }}</a></h3>
+<p> {{ user.birthday_date.strftime('%d.%m.%Y') }}</p>
+<p> {{ user.location }}</p>
+<p><img class="picture_user_card" src='{{ url_for("static", path="images/avatars/" + user.avatar_id|string + ".webp") }}' ></p>
+</li>
+</ul>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock content%}

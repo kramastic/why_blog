@@ -1,3 +1,10 @@
+myenv/
+docker-compose.yml
+Dockerfile
+help.txt
+plan.txt
+summary.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
